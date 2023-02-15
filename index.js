@@ -19,14 +19,14 @@ inquirer.prompt([
    /* Pass your questions in here */
   {
     type: 'input',
-    name: 'Title',
+    name: 'title',
     message: 'What is the title of you new project? ',
-    validate: validate()
+    validate: validate()//could make a function to make sure the user input isn't blank
   },
 
   {
     type: 'input',
-    name: 'Descpription',
+    name: 'descpription',
     message: 'Enter a description for your new project: ',
     validate: validate()
 
@@ -34,35 +34,35 @@ inquirer.prompt([
 
   {
     type: 'input',
-    name: 'Installation Instructions',
+    name: 'installation',
     message: 'Please provide installation instructions: ',
     validate: validate()
   },
 
   {
     type: 'input',
-    name: 'Usage',
+    name: 'usage',
     message: 'How to use application: ',
     validate: validate()
   },
 
   {
     type: 'inout',
-    name: 'Contributing',
+    name: 'contributing',
     message: 'Enter contributions:',
     validate: validate()
   },
 
   {
     type: 'input',
-    name: 'Tests',
+    name: 'tests',
     message: "How to test application: ",
     validate: validate()
   },
 
   {
     type:'checkbox',
-    name: 'License',
+    name: 'license',
     message: 'What license does your application have? ',
     choices:[
       'MIT License',
@@ -75,14 +75,14 @@ inquirer.prompt([
 
   {
     type:'input',
-    name: 'GitHub',
+    name: 'gitHub',
     message: "Enter your Github: ",
     validate: validate()
   },
 
   {
     type: 'input',
-    name: 'Email',
+    name: 'email',
     message: "Enter your email: ",
     validate: validate()
   }
@@ -90,11 +90,29 @@ inquirer.prompt([
 ]).then((answers) => {
     //use the user input to plug into README generator
       console.log('Your README file being made by the Council of Wizards...');
+      console.log(JSON.stringify(answers, null, ' '));
+      answers.makeLicenseBadge(answers.license);
+      fs.writeFile(readFile, readMeGenerator(answers), )
 
   }).catch((error) => {
     if (error.isTtyError) {
       // Prompt couldn't be rendered in the current environment
+      console.log('error!')
     } else {
       // Something else went wrong
     }
   }); 
+
+function makeLicenseBadge(license) { 
+  if (license === "MIT License") {
+    return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+} else if (license === "Apache License 2.0") {
+    return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+} else if (license === "GNU General Public License v3.0") {
+    return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+} else if (license === "Boost Software License 1.0") {
+    return "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)";
+} else if (license === "Eclipse Public License") {
+    return "[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)";
+}
+}
