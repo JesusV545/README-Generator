@@ -2,7 +2,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 //make a separate js for the file generation to make code look cleaner
-const readMeGenerator = require('./readMeGenerator.js')
+const readMeGenerator = require('./readMeGenerator');
 
 //make a validation input function incase user inputs invalid characters such as " "
 function validate(input) {
@@ -21,14 +21,14 @@ inquirer.prompt([
     type: 'input',
     name: 'title',
     message: 'What is the title of you new project? ',
-    validate: validate()//could make a function to make sure the user input isn't blank
+    validate: validate//could make a function to make sure the user input isn't blank
   },
 
   {
     type: 'input',
-    name: 'descpription',
+    name: 'description',
     message: 'Enter a description for your new project: ',
-    validate: validate()
+    validate: validate
 
   },
 
@@ -36,32 +36,32 @@ inquirer.prompt([
     type: 'input',
     name: 'installation',
     message: 'Please provide installation instructions: ',
-    validate: validate()
+    validate: validate
   },
 
   {
     type: 'input',
     name: 'usage',
     message: 'How to use application: ',
-    validate: validate()
+    validate: validate
   },
 
   {
     type: 'inout',
     name: 'contributing',
     message: 'Enter contributions:',
-    validate: validate()
+    validate: validate
   },
 
   {
     type: 'input',
     name: 'tests',
     message: "How to test application: ",
-    validate: validate()
+    validate: validate
   },
 
   {
-    type:'checkbox',
+    type:'list',
     name: 'license',
     message: 'What license does your application have? ',
     choices:[
@@ -75,33 +75,26 @@ inquirer.prompt([
 
   {
     type:'input',
-    name: 'gitHub',
+    name: 'github',
     message: "Enter your Github: ",
-    validate: validate()
+    validate: validate
   },
 
   {
     type: 'input',
     name: 'email',
     message: "Enter your email: ",
-    validate: validate()
+    validate: validate
   }
 
 ]).then((answers) => {
     //use the user input to plug into README generator
-      console.log('Your README file being made by the Council of Wizards...');
-      console.log(JSON.stringify(answers, null, ' '));
-      answers.makeLicenseBadge(answers.license);
-      fs.writeFile(readFile, readMeGenerator(answers), )
+      console.log('Your README file was successfully made by the Council of Wizards...');
+      console.log(JSON.stringify(answers));
+      answers.license = makeLicenseBadge(answers.license);
+      fs.writeFile('./assets/README.md', readMeGenerator(answers), (err) => {console.log(err)})
 
-  }).catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-      console.log('error!')
-    } else {
-      // Something else went wrong
-    }
-  }); 
+  }).catch((error) => {console.log(error)});
 
 function makeLicenseBadge(license) { 
   if (license === "MIT License") {
