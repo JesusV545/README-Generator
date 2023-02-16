@@ -1,34 +1,35 @@
 function readMeGenerator(answers){
     return `
-    # ${answers.title} ${answers.license}
+# ${answers.title} ${answers.license}
 
-    # Description
-    ${answers.description}
+# Description
+${answers.description}
 
-    # Table of Contents 
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Contributing](#contributing)
-    * [Tests](#test)
-    * [Contacts](#contacts)
-    
-    ## Installation
-    ${answers.installation}
+# Table of Contents 
+* [Description](#description)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Tests](#test)
+* [Contacts](#contacts)
 
-    ## Usage
-    ${answers.usage}
+## Installation
+${answers.installation}
 
-    ## Contribution
-    ${answers.contributing}
+## Usage
+${answers.usage}
 
-    ## Tests
-    ${answers.tests}
+## Contribution
+${answers.contributing}
 
-    ## Contacts
-    ${answers.github}
-    ${answers.email}
+## Tests
+${answers.tests}
+
+## Contacts
+${answers.github}
+${answers.email}
 
     `;
 }
+
 module.exports = readMeGenerator;
