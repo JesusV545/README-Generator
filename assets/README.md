@@ -1,8 +1,8 @@
 
-# ;alksdjf [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# New Project [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Description
-aslkdfj
+Creating a new project
 
 # Table of Contents 
 * [Description](#description)
@@ -13,19 +13,17 @@ aslkdfj
 * [Contacts](#contacts)
 
 ## Installation
-asd;lfkasd
+npm i
 
 ## Usage
-fasd
+Using node.js
 
 ## Contribution
-fas
+node.js javascript
 
 ## Tests
-dfas
+run node.js
 
 ## Contacts
-g
-asdf
-
-    
+JesusV545
+myemail@email.com
